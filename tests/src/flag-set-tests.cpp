@@ -32,6 +32,10 @@ TEST(flag_set, test_and)
     result = ~red & Options::RED_BACKGROUND;
     EXPECT_FALSE(result);
     EXPECT_EQ(result.count(), 0);
+
+    flag_set<Options> red_foreground(Options::RED_FOREGROUND);
+    red &= Options::RED_FOREGROUND;
+    EXPECT_TRUE(red == red_foreground);
 }
 
 TEST(flag_set, test_or)
