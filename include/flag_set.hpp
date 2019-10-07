@@ -1,3 +1,7 @@
+// flag_set is a type-safe class for using enums as flags in C++14 with an underlying std::bitset.
+// See https://github.com/mrts/flag-set-cpp
+// Licence: MIT, see LICENCE
+
 #pragma once
 
 #include <bitset>
@@ -9,6 +13,9 @@ template <typename T>
 class flag_set
 {
 public:
+    flag_set() = default;
+
+    explicit flag_set(const T& val) { flags.set(static_cast<u_type>(val)); }
 
     // Binary operations.
 
@@ -25,7 +32,6 @@ public:
         flags &= o.flags;
         return *this;
     }
-
 
     flag_set& operator|=(const T& val) noexcept
     {
@@ -132,10 +138,7 @@ public:
 
     constexpr bool operator[](const T& val) const { return flags[static_cast<u_type>(val)]; }
 
-    std::string to_string() const
-    {
-        return flags.to_string();
-    }
+    std::string to_string() const { return flags.to_string(); }
 
     // Operator for outputting to stream.
     friend std::ostream& operator<<(std::ostream& stream, const flag_set& self)
