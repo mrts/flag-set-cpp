@@ -86,4 +86,8 @@ TEST(flag_set, test_set_reset)
 
     options.set(Options::FLASH, false);
     EXPECT_EQ(options.count(), 0);
+
+    options.set(Options::FLASH);
+    options.set(Options::INVERT_MOUSE);
+    EXPECT_EQ(options.count(), 2);
 }
