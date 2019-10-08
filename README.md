@@ -2,9 +2,9 @@
 
 `flag_set` is a type-safe class for using enums as flags in C++14 with an underlying `std::bitset`.
 
-The original idea is by [Code review StackExchange user Xaqq](https://codereview.stackexchange.com/questions/96146/c-flagset-typesafe-usage-of-enumeration-as-bitset-bitmask)
-with additions from user
-[Barry](https://codereview.stackexchange.com/users/31292/barry).
+The original idea is by [Arnaud Kapp (Xaqq)](https://codereview.stackexchange.com/questions/96146/c-flagset-typesafe-usage-of-enumeration-as-bitset-bitmask)
+with additions from 
+[Barry Revzin](https://codereview.stackexchange.com/users/31292/barry).
 
 ## Usage
 
