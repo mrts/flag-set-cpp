@@ -12,9 +12,11 @@ with additions from user
 project to use it.
 
 The `enum` type of the `flag_set` **must have** a last value sentinel Unicode
-symbol `‿` (undertie, U+203F). However, this does currently [not work with
-GCC](https://gcc.gnu.org/wiki/FAQ#utf8_identifiers). Please open an issue if
-this is a problem for you (and feel free to propose a solution).
+symbol `‿` (undertie, U+203F), as `flag_set` needs to know the `enum` size.
+I chose `‿` as sentinel as it stands out clearly and is unlikely to collide with
+an enum value. However, although this works well with Clang, it does currently
+[not work with GCC](https://gcc.gnu.org/wiki/FAQ#utf8_identifiers). Please open
+an issue if this is a problem for you (and feel free to propose a solution).
 
 Usage example:
 
@@ -34,7 +36,7 @@ int main()
 {
     flag_set<Options> red(Options::RED_FOREGROUND | Options::RED_BACKGROUND);
 
-    if (red & Options::RED_BACKGROUND)
+    if (red[Options::RED_BACKGROUND]) // or red & Options::RED_BACKGROUND
         cout << "Red background activated";
 }
 ```
