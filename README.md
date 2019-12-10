@@ -11,13 +11,9 @@ with additions from
 `flag_set` is a header-only library, simply copy `include/flag_set.hpp` to your
 project to use it.
 
-The `enum` type of the `flag_set` **must have** a last value sentinel Unicode
-symbol `‿` (undertie, U+203F), as `flag_set` needs to know the `enum` size.
-I chose `‿` as sentinel as it stands out clearly and is unlikely to collide with
-an enum value. However, although this works well with Clang, it does currently
-[not work with GCC](https://gcc.gnu.org/wiki/FAQ#utf8_identifiers). Please comment
-under [issue #2](https://github.com/mrts/flag-set-cpp/issues/2) if this is a problem
-for you (and feel free to propose a solution).
+The `enum` type of the `flag_set` **must have** a last value sentinel `_`. The
+sentinel value character `_` was chosen as it stands out clearly and is
+unlikely to collide with a real enum value.
 
 Usage example:
 
@@ -30,7 +26,7 @@ enum class Options : uint8_t {
     FLASH,
     RED_BACKGROUND,
     RED_FOREGROUND,
-    ‿
+    _
 };
 
 int main()

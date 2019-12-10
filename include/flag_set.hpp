@@ -149,7 +149,7 @@ public:
 private:
     using u_type = std::underlying_type_t<T>;
     // or std::bitset<std::numeric_limits<u_type>::max()> flags
-    std::bitset<static_cast<u_type>(T::‿)> flags;
+    std::bitset<static_cast<u_type>(T::_)> flags;
 };
 
 // Operator that combines two enumeration values into a flag_set.

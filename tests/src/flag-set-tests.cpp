@@ -10,7 +10,7 @@ enum class Options : uint8_t {
     FLASH,
     RED_BACKGROUND,
     RED_FOREGROUND,
-    ‿
+    _
 };
 
 TEST(flag_set, test_and)
