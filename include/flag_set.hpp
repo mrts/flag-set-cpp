@@ -140,7 +140,7 @@ public:
 
     std::string to_string() const { return flags.to_string(); }
 
-    // Operator for outputting to stream.
+    // Operator for outputting to std::ostream.
     friend std::ostream& operator<<(std::ostream& stream, const flag_set& self)
     {
         return stream << self.flags;
@@ -148,13 +148,26 @@ public:
 
 private:
     using u_type = std::underlying_type_t<T>;
-    // or std::bitset<std::numeric_limits<u_type>::max()> flags
+
+    // _ is last value sentinel and must be present in enum T.
     std::bitset<static_cast<u_type>(T::_)> flags;
 };
 
-// Operator that combines two enumeration values into a flag_set.
+template <typename T, typename = void>
+struct is_enum_that_contains_sentinel : std::false_type
+{
+};
+
 template <typename T>
-std::enable_if_t<std::is_enum<T>::value, flag_set<T>> operator|(const T& lhs, const T& rhs)
+struct is_enum_that_contains_sentinel<T, decltype(static_cast<void>(T::_))> : std::is_enum<T>
+{
+};
+
+// Operator that combines two enumeration values into a flag_set only if the
+// enumeration contains the sentinel `_`.
+template <typename T>
+std::enable_if_t<is_enum_that_contains_sentinel<T>::value, flag_set<T>> operator|(const T& lhs,
+                                                                                  const T& rhs)
 {
     flag_set<T> fs;
     fs |= lhs;

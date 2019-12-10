@@ -39,3 +39,11 @@ int main()
 ```
 
 See more examples in [tests](tests/src/flag-set-tests.cpp).
+
+## Contributing
+
+Run `clang-format` on patches as follows:
+
+```sh
+find include/ tests/ -iname '*.hpp' -o -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i
+```
