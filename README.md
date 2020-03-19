@@ -11,8 +11,8 @@ with additions from
 `flag_set` is a header-only library, simply copy `include/flag_set.hpp` to your
 project to use it.
 
-The `enum` type of the `flag_set` **must have** a last value sentinel `_`. The
-sentinel value character `_` was chosen as it stands out clearly and is
+The `enum` type of the `flag_set` **must have** a last value sentinel `_`,
+a single underscore character. Underscore was chosen as it stands out clearly and is
 unlikely to collide with a real enum value.
 
 Usage example:
